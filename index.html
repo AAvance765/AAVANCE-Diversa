@@ -260,7 +260,7 @@
                     headers: {
                         'Content-Type': 'text/plain'
                     },
-                    body: JSON.stringify({ data: dataToSend })
+                    body: JSON.stringify({ data: dataToSubmit }) // <--- Aquí estaba el error
                 });
                 
                 // Con mode 'no-cors', la respuesta es opaca. Asumimos éxito si no hay fallo de red.
