@@ -263,9 +263,12 @@
 
                 const response = await fetch(SHEETDB_URL, {
                     method: 'POST',
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ data: [dataToSubmit] })
-                });
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'text/plain'
+                        },
+                        body: JSON.stringify({ data: dataToSend })
+                    });
 
                 if (response.ok) {
                     setCurrentStep('success');
