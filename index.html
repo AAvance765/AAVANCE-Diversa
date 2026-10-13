@@ -254,29 +254,18 @@
             dataToSubmit['Fecha'] = new Date().toISOString();
 
             try {
-                // Simulate network request if URL is default
-                if (SHEETDB_URL.includes('TU_CODIGO_AQUI')) {
-                    console.log("Mock Submit Data:", dataToSubmit);
-                    setTimeout(() => setCurrentStep('success'), 2000);
-                    return;
-                }
-
-                const response = await fetch(SHEETDB_URL, {
+               await fetch(SHEETDB_URL, {
                     method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'text/plain'
-                        },
-                        body: JSON.stringify({ data: dataToSend })
-                    });
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({ data: dataToSend })
+                });
+                
+                // Con mode 'no-cors', la respuesta es opaca. Asumimos éxito si no hay fallo de red.
+                setCurrentStep('success');
 
-                if (response.ok) {
-                    setCurrentStep('success');
-                } else {
-                    console.error("Error submitting data", await response.text());
-                    alert("Hubo un error guardando tus respuestas. Por favor, intenta de nuevo.");
-                    setCurrentStep('quiz'); // Go back to quiz to retry
-                }
             } catch (error) {
                 console.error("Network error:", error);
                 alert("Error de red. Verifica tu conexión.");
