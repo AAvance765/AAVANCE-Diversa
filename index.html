@@ -65,8 +65,7 @@
 
     // --- Configuration ---
     const SHEETDB_URL = 'https://script.google.com/macros/s/AKfycbwwCIHNVCQlF7UV1K0_ofwV5j30TF15zrlUvItRtXD3Rb-IEfATEi7xZLhKp7Bz0eLIKQ/exec';
-    const ALLOWED_USERS = ["123456", "987654", "000000"]; // Simple local validation
-
+    
     // --- Components ---
 
     // Icons using Lucide (standalone version requires DOM rendering, simpler to use SVGs inline for React standalone)
@@ -163,26 +162,37 @@
 
     // --- Main App Component ---
     const App = () => {
-        const [currentStep, setCurrentStep] = useState('login'); // login, welcome, quiz, loading, success
+        const [currentStep, setCurrentStep] = useState('login');
         const [documentNumber, setDocumentNumber] = useState('');
         const [loginError, setLoginError] = useState('');
         
         const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
         const [answers, setAnswers] = useState({});
         
-        // For input components to hold current value before saving
         const [currentInputValue, setCurrentInputValue] = useState('');
+        
+        const [allowedUsers, setAllowedUsers] = useState([]);
+
+        useEffect(() => {
+            fetch('./cedulas.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cedulasTexto = data.map(String);
+                    setAllowedUsers(cedulasTexto);
+                })
+                .catch(err => console.error(err));
+        }, []);
 
         const handleLogin = (e) => {
             e.preventDefault();
-            if (ALLOWED_USERS.includes(documentNumber)) {
+            if (allowedUsers.includes(documentNumber)) {
                 setLoginError('');
                 setCurrentStep('welcome');
             } else {
                 setLoginError('Documento no encontrado o no autorizado.');
             }
         };
-
+       
         const startQuiz = () => {
             setCurrentStep('quiz');
             // Initialize input value if answer exists
