@@ -88,7 +88,7 @@
                 { id: "edad", type: "number", text: "¿Cuántos años tienes?" },
                 { id: "genero", type: "select", text: "¿Con qué género te identificas?", options: ["Mujer", "Hombre", "No binario", "Otro", "Prefiero no decirlo"] },
                 { id: "estado_civil", type: "select", text: "Cuéntanos un poco más sobre ti, ¿cuál es tu estado civil?", options: ["Soltería", "Matrimonio", "Unión Libre", "Otro"] },
-                { id: "educacion", type: "select", text: "¿Hasta qué nivel estudiaste?", options: ["Primaria", "Bachillerato", "Nivel Técnico/Tecnológico", "Nivel Universitario"] }
+                { id: "educacion", type: "select", text: "¿Hasta qué nivel estudiaste?", options: ["Ninguno", "Primaria", "Bachillerato", "Nivel Técnico/Tecnológico", "Nivel Universitario"] }
             ]
         },
         {
@@ -140,9 +140,9 @@
                  },
                  { id: "separacion_cuentas", type: "select", text: "¿Cómo manejas el dinero de tu negocio y tu dinero personal?",
                    options: [
-                       { label: "Todo está en la misma cuenta o bolsillo", weight: 0 },
+                       { label: "Todo en efectivo, sin separarlo", weight: 0 },
                        { label: "Intento separarlos pero a veces se mezclan", weight: 1 },
-                       { label: "Tengo cuentas/bolsillos totalmente separados y me pago un sueldo", weight: 3 }
+                       { label: "Tengo bolsillos totalmente separados y me pago un sueldo", weight: 3 }
                    ]
                  },
                  { id: "emergencias", type: "select", text: "Si mañana se daña una herramienta vital para tu negocio, ¿cómo la repones?",
